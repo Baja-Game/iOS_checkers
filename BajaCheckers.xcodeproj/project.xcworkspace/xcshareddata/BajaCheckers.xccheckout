@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>ABC05FDB-F45B-47BF-A4D8-58F889298FE8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BajaCheckers</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>66AAA20C112BA11FE24A14A0AF33E589E25820AC</key>
+		<string>https://github.com/Baja-Game/iOS_checkers.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BajaCheckers.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>66AAA20C112BA11FE24A14A0AF33E589E25820AC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Baja-Game/iOS_checkers.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>66AAA20C112BA11FE24A14A0AF33E589E25820AC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>66AAA20C112BA11FE24A14A0AF33E589E25820AC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS_checkers</string>
+		</dict>
+	</array>
+</dict>
+</plist>
