@@ -25,6 +25,7 @@ import UIKit
         self.layer.borderColor = borderColor.CGColor
         self.layer.borderWidth = borderWidth
         
+        self.layer.masksToBounds = true
     
     }
     
