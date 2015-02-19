@@ -12,6 +12,20 @@ class SelectGameTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        // check for existing token - move to VIEWDIDLOAD or ViewdidAppear?
+        if let token = User.currentUser().token {
+            println("User exists and is logged in with auth token: \(token)")
+            
+        } else {
+            
+            // go to SelectGameViewController
+            if let loginVC = storyboard?.instantiateViewControllerWithIdentifier("loginVC") as? LoginViewController {
+                navigationController?.presentViewController(loginVC, animated: false, completion: nil)
+            }
+            
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		D852A5FE1A94152C00EA64EC /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D852A5FD1A94152C00EA64EC /* CustomButton.swift */; };
 		D85F48ED1A93EA29000E7FA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85F48EC1A93EA29000E7FA9 /* AppDelegate.swift */; };
-		D85F48EF1A93EA29000E7FA9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85F48EE1A93EA29000E7FA9 /* LoginViewController.swift */; };
 		D85F48F21A93EA29000E7FA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D85F48F01A93EA29000E7FA9 /* Main.storyboard */; };
 		D85F48F41A93EA29000E7FA9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D85F48F31A93EA29000E7FA9 /* Images.xcassets */; };
 		D85F48F71A93EA29000E7FA9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D85F48F51A93EA29000E7FA9 /* LaunchScreen.xib */; };
 		D85F49031A93EA29000E7FA9 /* BajaCheckersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85F49021A93EA29000E7FA9 /* BajaCheckersTests.swift */; };
 		D878CBC01A9503E200F655B2 /* SelectGameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D878CBBF1A9503E200F655B2 /* SelectGameTableViewController.swift */; };
 		D878CBC21A95045700F655B2 /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D878CBC11A95045700F655B2 /* GameTableViewCell.swift */; };
+		D878CBC41A95073C00F655B2 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D878CBC31A95073C00F655B2 /* BoardView.swift */; };
+		D878CBC61A9507C300F655B2 /* GamePiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = D878CBC51A9507C300F655B2 /* GamePiece.swift */; };
+		D878CBCA1A95093D00F655B2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D878CBC91A95093D00F655B2 /* LoginViewController.swift */; };
+		D878CBCC1A95190B00F655B2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D878CBCB1A95190B00F655B2 /* API.swift */; };
+		D878CBD01A96326B00F655B2 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D878CBCF1A96326B00F655B2 /* GameModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +37,6 @@
 		D85F48E71A93EA29000E7FA9 /* BajaCheckers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BajaCheckers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85F48EB1A93EA29000E7FA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D85F48EC1A93EA29000E7FA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D85F48EE1A93EA29000E7FA9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D85F48F11A93EA29000E7FA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D85F48F31A93EA29000E7FA9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D85F48F61A93EA29000E7FA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -42,6 +45,12 @@
 		D85F49021A93EA29000E7FA9 /* BajaCheckersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BajaCheckersTests.swift; sourceTree = "<group>"; };
 		D878CBBF1A9503E200F655B2 /* SelectGameTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectGameTableViewController.swift; sourceTree = "<group>"; };
 		D878CBC11A95045700F655B2 /* GameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
+		D878CBC31A95073C00F655B2 /* BoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		D878CBC51A9507C300F655B2 /* GamePiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePiece.swift; sourceTree = "<group>"; };
+		D878CBC91A95093D00F655B2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D878CBCB1A95190B00F655B2 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		D878CBCF1A96326B00F655B2 /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		D878CBD11A96399100F655B2 /* Logic.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Logic.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +74,8 @@
 		D852A5FA1A9414CF00EA64EC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D878CBCF1A96326B00F655B2 /* GameModel.swift */,
+				D878CBCB1A95190B00F655B2 /* API.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -74,6 +85,8 @@
 			children = (
 				D852A5FD1A94152C00EA64EC /* CustomButton.swift */,
 				D878CBC11A95045700F655B2 /* GameTableViewCell.swift */,
+				D878CBC31A95073C00F655B2 /* BoardView.swift */,
+				D878CBC51A9507C300F655B2 /* GamePiece.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -81,7 +94,7 @@
 		D852A5FC1A94150100EA64EC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D85F48EE1A93EA29000E7FA9 /* LoginViewController.swift */,
+				D878CBC91A95093D00F655B2 /* LoginViewController.swift */,
 				D878CBBF1A9503E200F655B2 /* SelectGameTableViewController.swift */,
 			);
 			name = Controllers;
@@ -108,10 +121,11 @@
 		D85F48E91A93EA29000E7FA9 /* BajaCheckers */ = {
 			isa = PBXGroup;
 			children = (
-				D852A5FC1A94150100EA64EC /* Controllers */,
-				D852A5FB1A9414FC00EA64EC /* Views */,
 				D852A5FA1A9414CF00EA64EC /* Models */,
+				D852A5FB1A9414FC00EA64EC /* Views */,
+				D852A5FC1A94150100EA64EC /* Controllers */,
 				D85F48F01A93EA29000E7FA9 /* Main.storyboard */,
+				D878CBD11A96399100F655B2 /* Logic.playground */,
 				D85F48EA1A93EA29000E7FA9 /* Supporting Files */,
 			);
 			path = BajaCheckers;
@@ -245,11 +259,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D878CBCA1A95093D00F655B2 /* LoginViewController.swift in Sources */,
 				D878CBC21A95045700F655B2 /* GameTableViewCell.swift in Sources */,
-				D85F48EF1A93EA29000E7FA9 /* LoginViewController.swift in Sources */,
+				D878CBD01A96326B00F655B2 /* GameModel.swift in Sources */,
 				D85F48ED1A93EA29000E7FA9 /* AppDelegate.swift in Sources */,
+				D878CBC41A95073C00F655B2 /* BoardView.swift in Sources */,
 				D852A5FE1A94152C00EA64EC /* CustomButton.swift in Sources */,
 				D878CBC01A9503E200F655B2 /* SelectGameTableViewController.swift in Sources */,
+				D878CBCC1A95190B00F655B2 /* API.swift in Sources */,
+				D878CBC61A9507C300F655B2 /* GamePiece.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
