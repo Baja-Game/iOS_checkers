@@ -101,9 +101,9 @@ class User {
             
             println(responseInfo)
             
-            let dataInfo = responseInfo["user"] as [String:String]
+            let dataInfo = responseInfo["user"] as [String:AnyObject]
             
-            self.token = dataInfo["authentication_token"]
+            self.token = dataInfo["authentication_token"] as? String
             
         })
     }
@@ -129,9 +129,9 @@ class User {
             
             println(responseInfo)
             
-            let dataInfo = responseInfo["user"] as [String:String]
+            let dataInfo = responseInfo["user"] as [String:AnyObject]
             
-            self.token = dataInfo["authentication_token"]
+            self.token = dataInfo["authentication_token"] as? String
             
         })
     }

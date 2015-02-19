@@ -50,6 +50,7 @@ class LoginViewController: UIViewController {
             User.currentUser().getUserToken(fieldValues[2], andEmail: fieldValues[0], andPassword: fieldValues[1])
             
             // dismiss view controller when finished, add completion to function above
+            dismissViewControllerAnimated(true, completion: nil)
             
         }
         
