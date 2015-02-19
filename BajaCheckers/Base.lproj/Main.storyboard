@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -152,7 +153,6 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="logInUser:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="HxW-J0-aWs"/>
-                                            <action selector="signUpUser:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="thE-Ge-hQm"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -254,15 +254,230 @@
         <scene sceneID="Cqk-y7-lRZ">
             <objects>
                 <tableViewController id="C6b-w8-y4k" userLabel="Select Game TVC" customClass="SelectGameTableViewController" customModule="BajaCheckers" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="JiT-td-DWn">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" id="JiT-td-DWn">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="OxF-va-5OD">
+                            <rect key="frame" x="0.0" y="64" width="600" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nC7-S9-9xf" customClass="CustomButton" customModule="BajaCheckers" customModuleProvider="target">
+                                    <rect key="frame" x="240" y="12" width="120" height="56"/>
+                                    <color key="backgroundColor" red="0.17254902420000001" green="0.54901963470000004" blue="0.1294117719" alpha="1" colorSpace="deviceRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="120" id="6GD-9S-EPJ"/>
+                                        <constraint firstAttribute="height" constant="56" id="OaT-hd-zib"/>
+                                        <constraint firstAttribute="width" constant="120" id="RAU-5b-5hp"/>
+                                        <constraint firstAttribute="height" constant="64" id="whd-4L-8ma"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
+                                    <state key="normal" title="New Game">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="2"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerSize">
+                                            <real key="value" value="9"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="6GD-9S-EPJ"/>
+                                            <exclude reference="whd-4L-8ma"/>
+                                        </mask>
+                                    </variation>
+                                    <connections>
+                                        <action selector="createNewGame:" destination="C6b-w8-y4k" eventType="touchUpInside" id="3qV-iZ-sep"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QL4-hw-bRa">
+                                    <rect key="frame" x="547" y="16" width="44.5" height="21.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="82" id="5Yo-Ri-Bpd"/>
+                                        <constraint firstAttribute="width" constant="112" id="G0J-Zg-oSM"/>
+                                        <constraint firstAttribute="height" constant="36" id="sHH-sP-NZF"/>
+                                        <constraint firstAttribute="height" constant="36" id="shk-l1-2WJ"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="5Yo-Ri-Bpd"/>
+                                            <exclude reference="G0J-Zg-oSM"/>
+                                            <exclude reference="sHH-sP-NZF"/>
+                                            <exclude reference="shk-l1-2WJ"/>
+                                        </mask>
+                                    </variation>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="250" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyO-gj-fp3">
+                                    <rect key="frame" x="547" y="40" width="44.5" height="21.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44.5" id="2mu-aw-SfY"/>
+                                        <constraint firstAttribute="width" constant="82" id="7Lb-JF-5NV"/>
+                                        <constraint firstAttribute="height" constant="36" id="PPJ-9R-RK8"/>
+                                        <constraint firstAttribute="width" constant="112" id="PqQ-Lb-CCe"/>
+                                        <constraint firstAttribute="height" constant="36" id="YnE-qh-2UL"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="7Lb-JF-5NV"/>
+                                            <exclude reference="PPJ-9R-RK8"/>
+                                            <exclude reference="PqQ-Lb-CCe"/>
+                                            <exclude reference="YnE-qh-2UL"/>
+                                        </mask>
+                                    </variation>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nh-le-6Zc">
+                                    <rect key="frame" x="8" y="16" width="44.5" height="21.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="36" id="8yT-89-Fqa"/>
+                                        <constraint firstAttribute="height" constant="36" id="YWy-d5-1og"/>
+                                        <constraint firstAttribute="width" constant="44.5" id="eGo-Lf-7rz"/>
+                                        <constraint firstAttribute="width" constant="112" id="mEv-yj-N7y"/>
+                                        <constraint firstAttribute="width" constant="82" id="zSG-hC-iRn"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="8yT-89-Fqa"/>
+                                            <exclude reference="YWy-d5-1og"/>
+                                            <exclude reference="mEv-yj-N7y"/>
+                                            <exclude reference="zSG-hC-iRn"/>
+                                        </mask>
+                                    </variation>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmu-yG-a8w">
+                                    <rect key="frame" x="8" y="40" width="44.5" height="21.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="82" id="9ja-Dh-Dkt"/>
+                                        <constraint firstAttribute="height" constant="36" id="Hdp-Ew-Kmk"/>
+                                        <constraint firstAttribute="height" constant="36" id="KQK-Na-tug"/>
+                                        <constraint firstAttribute="width" constant="44.5" id="Maa-LR-jzr"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44.5" id="axn-dm-DxR"/>
+                                        <constraint firstAttribute="width" constant="112" id="eMZ-M6-MA8"/>
+                                        <constraint firstAttribute="width" constant="44.5" id="gSE-Ch-0xh"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="9ja-Dh-Dkt"/>
+                                            <exclude reference="Hdp-Ew-Kmk"/>
+                                            <exclude reference="KQK-Na-tug"/>
+                                            <exclude reference="Maa-LR-jzr"/>
+                                            <exclude reference="axn-dm-DxR"/>
+                                            <exclude reference="eMZ-M6-MA8"/>
+                                        </mask>
+                                    </variation>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="Wmu-yG-a8w" firstAttribute="top" secondItem="0Nh-le-6Zc" secondAttribute="bottom" constant="2.5" id="5Z7-iy-FqK"/>
+                                <constraint firstAttribute="trailing" secondItem="uyO-gj-fp3" secondAttribute="trailing" constant="8.5" id="8bW-Hw-DNK"/>
+                                <constraint firstAttribute="centerY" secondItem="nC7-S9-9xf" secondAttribute="centerY" id="FOt-4J-OYE"/>
+                                <constraint firstAttribute="centerX" secondItem="nC7-S9-9xf" secondAttribute="centerX" id="J9Q-cr-dH2"/>
+                                <constraint firstItem="0Nh-le-6Zc" firstAttribute="leading" secondItem="OxF-va-5OD" secondAttribute="leading" constant="8" id="KNT-gA-r8s"/>
+                                <constraint firstAttribute="trailing" secondItem="QL4-hw-bRa" secondAttribute="trailing" constant="8.5" id="Kca-Ro-C2J"/>
+                                <constraint firstItem="Wmu-yG-a8w" firstAttribute="leading" secondItem="OxF-va-5OD" secondAttribute="leading" constant="8" id="Mex-Tm-hJ1"/>
+                                <constraint firstItem="nC7-S9-9xf" firstAttribute="top" secondItem="OxF-va-5OD" secondAttribute="top" constant="8" id="NCR-rC-tQX"/>
+                                <constraint firstItem="QL4-hw-bRa" firstAttribute="top" secondItem="OxF-va-5OD" secondAttribute="top" constant="15" id="Ndi-63-nYT"/>
+                                <constraint firstItem="0Nh-le-6Zc" firstAttribute="top" secondItem="OxF-va-5OD" secondAttribute="top" constant="16" id="Vov-Ox-ndN"/>
+                                <constraint firstItem="Wmu-yG-a8w" firstAttribute="top" secondItem="0Nh-le-6Zc" secondAttribute="bottom" constant="2.5" id="YlL-kh-ZLf"/>
+                                <constraint firstItem="Wmu-yG-a8w" firstAttribute="leading" secondItem="OxF-va-5OD" secondAttribute="leading" constant="13" id="bnG-wL-FuQ"/>
+                                <constraint firstAttribute="trailing" secondItem="QL4-hw-bRa" secondAttribute="trailing" constant="8" id="fMw-Od-Lea"/>
+                                <constraint firstItem="uyO-gj-fp3" firstAttribute="top" secondItem="QL4-hw-bRa" secondAttribute="bottom" constant="2.5" id="jlT-xe-GTU"/>
+                                <constraint firstItem="QL4-hw-bRa" firstAttribute="top" secondItem="OxF-va-5OD" secondAttribute="top" constant="22" id="lVZ-Ar-k6A"/>
+                                <constraint firstAttribute="trailing" secondItem="QL4-hw-bRa" secondAttribute="trailing" constant="8" id="owL-MF-8R4"/>
+                                <constraint firstItem="QL4-hw-bRa" firstAttribute="top" secondItem="OxF-va-5OD" secondAttribute="top" constant="16" id="vsf-ln-x7d"/>
+                                <constraint firstAttribute="centerX" secondItem="nC7-S9-9xf" secondAttribute="centerX" id="yVl-q3-cxg"/>
+                                <constraint firstItem="Wmu-yG-a8w" firstAttribute="top" secondItem="0Nh-le-6Zc" secondAttribute="bottom" constant="2.5" id="zWM-hE-26H"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="5Z7-iy-FqK"/>
+                                    <exclude reference="bnG-wL-FuQ"/>
+                                    <exclude reference="zWM-hE-26H"/>
+                                    <exclude reference="J9Q-cr-dH2"/>
+                                    <exclude reference="NCR-rC-tQX"/>
+                                    <exclude reference="Ndi-63-nYT"/>
+                                    <exclude reference="fMw-Od-Lea"/>
+                                    <exclude reference="lVZ-Ar-k6A"/>
+                                    <exclude reference="owL-MF-8R4"/>
+                                </mask>
+                            </variation>
+                        </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="JA9-Nj-lpK" customClass="GameTableViewCell" customModule="BajaCheckers" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="120" id="JA9-Nj-lpK" userLabel="Game Cell" customClass="GameTableViewCell" customModule="BajaCheckers" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JA9-Nj-lpK" id="12z-1A-CLa">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="piece" translatesAutoresizingMaskIntoConstraints="NO" id="F8T-js-mb9">
+                                            <rect key="frame" x="8" y="22" width="75" height="75"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="75" id="Fuu-ET-1HW"/>
+                                                <constraint firstAttribute="height" constant="75" id="cDX-9h-Ez8"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="U" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4i7-kb-6WW">
+                                            <rect key="frame" x="24" y="33" width="43" height="53"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="43" id="Eev-aV-kTL"/>
+                                                <constraint firstAttribute="height" constant="53" id="sFb-C8-58k"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="39"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OpponentName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRh-a3-Fvg">
+                                            <rect key="frame" x="93" y="36" width="148" height="26"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="last moved: 3hrs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1K4-Ig-APM">
+                                            <rect key="frame" x="95" y="62" width="118" height="20.5"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="IRh-a3-Fvg" firstAttribute="top" secondItem="12z-1A-CLa" secondAttribute="topMargin" constant="28" id="1Ot-xF-UVq"/>
+                                        <constraint firstItem="1K4-Ig-APM" firstAttribute="leading" secondItem="F8T-js-mb9" secondAttribute="trailing" constant="12" id="ByH-iD-0Se"/>
+                                        <constraint firstItem="IRh-a3-Fvg" firstAttribute="leading" secondItem="F8T-js-mb9" secondAttribute="trailing" constant="10" id="FVw-sc-Rdr"/>
+                                        <constraint firstItem="4i7-kb-6WW" firstAttribute="leading" secondItem="12z-1A-CLa" secondAttribute="leadingMargin" constant="16" id="OL5-ff-HWI"/>
+                                        <constraint firstItem="1K4-Ig-APM" firstAttribute="top" secondItem="IRh-a3-Fvg" secondAttribute="bottom" constant="0.5" id="Poq-qV-5Q2"/>
+                                        <constraint firstAttribute="centerY" secondItem="F8T-js-mb9" secondAttribute="centerY" id="Vll-kR-TnG"/>
+                                        <constraint firstItem="F8T-js-mb9" firstAttribute="leading" secondItem="12z-1A-CLa" secondAttribute="leadingMargin" id="XPG-RI-8iQ"/>
+                                        <constraint firstItem="4i7-kb-6WW" firstAttribute="top" secondItem="12z-1A-CLa" secondAttribute="topMargin" constant="25" id="eE9-Wk-y6Z"/>
+                                        <constraint firstItem="IRh-a3-Fvg" firstAttribute="leading" secondItem="F8T-js-mb9" secondAttribute="trailing" constant="23" id="phi-5r-8ce"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="phi-5r-8ce"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lastMovedLabel" destination="1K4-Ig-APM" id="UV2-FX-i1a"/>
+                                    <outlet property="opponentLetterLabel" destination="4i7-kb-6WW" id="9rk-sY-l6G"/>
+                                    <outlet property="opponentNameLabel" destination="IRh-a3-Fvg" id="23d-2z-fVZ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -270,7 +485,7 @@
                             <outlet property="delegate" destination="C6b-w8-y4k" id="whV-bQ-Qbf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="dXu-J6-AfI"/>
+                    <navigationItem key="navigationItem" title="BajaCheckers" id="dXu-J6-AfI"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tn6-ah-zyp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -279,7 +494,7 @@
         <!--Game Play VC-->
         <scene sceneID="Jhc-g7-D3p">
             <objects>
-                <viewController id="QJ7-eH-1yX" userLabel="Game Play VC" sceneMemberID="viewController">
+                <viewController id="QJ7-eH-1yX" userLabel="Game Play VC" customClass="GameViewController" customModule="BajaCheckers" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P7o-A8-kZB"/>
                         <viewControllerLayoutGuide type="bottom" id="KAe-d4-9I6"/>
@@ -300,18 +515,29 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1's Turn" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL2-ws-xvC">
+                                <rect key="frame" x="219" y="28" width="163" height="32"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="27"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="NeQ-d0-ZgG" secondAttribute="centerY" id="C4A-T6-uwD"/>
+                            <constraint firstItem="CL2-ws-xvC" firstAttribute="top" secondItem="P7o-A8-kZB" secondAttribute="bottom" constant="8" id="CSo-ZO-AN5"/>
                             <constraint firstAttribute="width" secondItem="NeQ-d0-ZgG" secondAttribute="width" multiplier="25:22" id="GbG-vs-PPm"/>
                             <constraint firstAttribute="centerX" secondItem="NeQ-d0-ZgG" secondAttribute="centerX" id="f05-YH-Zc4"/>
+                            <constraint firstAttribute="centerX" secondItem="CL2-ws-xvC" secondAttribute="centerX" id="yCB-2G-4Xm"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="turnLabel" destination="CL2-ws-xvC" id="bXs-Ay-LjI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lRU-Ze-Jgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2798" y="392"/>
+            <point key="canvasLocation" x="2779" y="392"/>
         </scene>
         <!--Game Navigation Controller-->
         <scene sceneID="6uG-Ng-HXN">
@@ -332,5 +558,6 @@
     </scenes>
     <resources>
         <image name="checkmark-big" width="200" height="200"/>
+        <image name="piece" width="300" height="300"/>
     </resources>
 </document>

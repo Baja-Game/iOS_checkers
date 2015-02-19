@@ -91,11 +91,36 @@ class LoginViewController: UIViewController {
     
     @IBAction func logInUser(sender: AnyObject) {
         // log in user
-        println("Login btn pressed, attempting to login user...")
+
         
-        User.currentUser().logInUser(emailTextField.text, andPassword: passwordTextField.text)
+//        User.currentUser().logInUser(emailTextField.text, andPassword: passwordTextField.text)
         
         
+        
+        var fieldValues: [String] = [emailTextField.text, passwordTextField.text]
+        
+        // check if all fields are filled in
+        if find(fieldValues, "") != nil {
+            
+            // all fields are not filled in, present error
+            var alertViewController = UIAlertController(title: "Log In Error", message: "Please fill in all fields.", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            var defaultAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+            
+            alertViewController.addAction(defaultAction)
+            
+            presentViewController(alertViewController, animated: true, completion: nil)
+            
+        } else {
+            
+            // all fields are filled in, sign up user (DO WE NEED TO CHECK FOR EXISTING USER?)
+            println("Login btn pressed, attempting to login user...")
+            User.currentUser().logInUser(fieldValues[0], andPassword: fieldValues[1])
+            
+            // dismiss view controller when finished, add completion to function above
+            dismissViewControllerAnimated(true, completion: nil)
+            
+        }
         
     }
     

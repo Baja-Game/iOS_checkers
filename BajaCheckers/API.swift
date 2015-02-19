@@ -46,9 +46,16 @@ class APIRequest {
             if error == nil {
                 // do something with data
                 
-                let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as [String:AnyObject]
+                if let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? [String:AnyObject] {
+                    
+                    completion(responseInfo: json)
+                    
+                } else {
+                    
+                    println("no json")
+                    
+                }
 
-                completion(responseInfo: json)
                 
             } else {
                 println(error)
@@ -112,6 +119,8 @@ class User {
     // LOGIN METHOD
     func logInUser(email: String, andPassword password: String) {
         
+        println(email, password)
+        
         var options: [String:AnyObject] = [
             
             "endpoint" : "users/log_in",
@@ -136,5 +145,54 @@ class User {
         })
     }
     
+    
+    ///////////
+    
+    // Join GAME METHOD
+    func requestNewGame() {
+        
+        var options: [String:AnyObject] = [
+            
+            "endpoint" : "games",
+            "method" : "PUT",
+            "body" : [
+                "auth_token" : token!
+            ]
+            
+        ]
+        
+        APIRequest.requestWithOptions(options, andCompletion: { (responseInfo) -> () in
+            // do something after request is done
+            
+            println(responseInfo)
+            //create new game model and set data to response
+            
+        })
+        
+        
+    }
+    
+    func requestGameList() {
+        
+        var options: [String:AnyObject] = [
+            
+            "endpoint" : "games",
+            "method" : "GET",
+            "body" : [
+                "auth_token" : token!
+            ]
+            
+        ]
+        
+        APIRequest.requestWithOptions(options, andCompletion: { (responseInfo) -> () in
+            // do something after request is done
+            
+            println(responseInfo)
+            
+            
+            
+        })
+        
+    }
     
 }

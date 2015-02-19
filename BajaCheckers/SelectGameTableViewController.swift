@@ -22,16 +22,26 @@ class SelectGameTableViewController: UITableViewController {
         }
     }
     
-class GameMenuItems: MenuItems {
+    class GameMenuItems: MenuItems {
         override init() {
             super.init()
-            
+                
             addSection("Your Move", item:   ["Jim","Bob","Max","Andy","Greg"])
             addSection("Their Move", item: ["Jim","Bob"]) 
             addSection("Past Games", item: ["Jim","Bob","Max","Andy","Greg"])
             addSection("Leaderboard", item: ["Jim","Bob","Max","Andy","Greg"])
+        }
+        
     }
+    
+    
+    @IBAction func createNewGame(sender: AnyObject) {
+        
+        User.currentUser().requestNewGame()
+        
     }
+    
+    
     
     
     override func viewDidLoad() {
@@ -50,26 +60,43 @@ class GameMenuItems: MenuItems {
             
         }
         
-        self.tableView.backgroundColor = UIColor.redColor()
+//        self.tableView.backgroundColor = UIColor.redColor()
 
     }
 
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-            return menuItems.sections.count
-        }
+        
+        return menuItems.sections.count
+        
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return menuItems.items[section].count
-        }
+        
+        return menuItems.items[section].count
+        
+    }
+    
+    // SET UP CELLS
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as GameTableViewCell
-            cell.textLabel?.text = menuItems.items[indexPath.section][indexPath.row]
-            return cell
-        }
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as GameTableViewCell
+    
+//        opponentLabel.text = menuItems.items[indexPath.section][indexPath.row]
+    
+        return cell
+    
+    }
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return menuItems.sections[section]
-        }
+        
+        return menuItems.sections[section]
+    
+    }
+    
+    // LISTEN FOR CELL BEING SELECTED
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
             let row = indexPath.row
             let section = indexPath.section
             let select = menuItems.items[section][row] + " " + menuItems.sections[section]
@@ -77,12 +104,16 @@ class GameMenuItems: MenuItems {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
     
     }
+    
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
         let headerView = view as UITableViewHeaderFooterView
         headerView.textLabel.textColor = UIColor.blackColor()
-        let font = UIFont(name: "AvenirNextCondensed-HeavyItalic", size: 23.0)
+        let font = UIFont(name: "HelveticaNeue-Thin", size: 22.0)
         headerView.textLabel.font = font?
         headerView.contentView.backgroundColor = UIColor.redColor()
+
     
-}
+    }
+    
 }

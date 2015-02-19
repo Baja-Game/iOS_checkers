@@ -9,6 +9,11 @@
 import UIKit
 
 class GameTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var opponentNameLabel: UILabel!
+    @IBOutlet weak var opponentLetterLabel: UILabel!
+    @IBOutlet weak var lastMovedLabel: UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

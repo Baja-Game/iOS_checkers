@@ -4,7 +4,7 @@
 //
 //  Created by Michael McChesney on 2/18/15.
 //  Copyright (c) 2015 Max McChesney. All rights reserved.
-//
+// 
 
 import UIKit
 
@@ -26,6 +26,7 @@ import UIKit
                     if let type = PieceType(rawValue: squarePieceType) {
                         
                         var piece = GamePiece(type: type)
+                        piece.delegate = self
                         
                         // tell each piece its current position
                         piece.square = (columnIndex, rowIndex)
