@@ -39,6 +39,9 @@ class SelectGameTableViewController: UITableViewController {
         
         User.currentUser().requestNewGame()
         
+        if let gameplayVC = storyboard?.instantiateViewControllerWithIdentifier("gameplayVC") as? GameViewController {
+            navigationController?.presentViewController(gameplayVC, animated: false, completion: nil)
+        
     }
     
     
@@ -59,8 +62,6 @@ class SelectGameTableViewController: UITableViewController {
             }
             
         }
-        
-//        self.tableView.backgroundColor = UIColor.redColor()
 
     }
 
@@ -97,21 +98,27 @@ class SelectGameTableViewController: UITableViewController {
     // LISTEN FOR CELL BEING SELECTED
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-            let row = indexPath.row
-            let section = indexPath.section
-            let select = menuItems.items[section][row] + " " + menuItems.sections[section]
-            //navigationItem.title = select
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let row = indexPath.row
+        let section = indexPath.section
+        let select = menuItems.items[section][row] + " " + menuItems.sections[section]
+        //navigationItem.title = select
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        
+//        let gameVC = storyboard?.instantiateViewControllerWithIdentifier("gameVC")
+//        presentViewController(gameVC, animated: true, completion: nil)
+        
+        
     
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         
         let headerView = view as UITableViewHeaderFooterView
-        headerView.textLabel.textColor = UIColor.blackColor()
+        headerView.textLabel.textColor = UIColor.whiteColor()
         let font = UIFont(name: "HelveticaNeue-Thin", size: 22.0)
         headerView.textLabel.font = font?
-        headerView.contentView.backgroundColor = UIColor.redColor()
+        headerView.contentView.backgroundColor = UIColor(red:0.15, green:0.49, blue:0.1, alpha:1)
 
     
     }

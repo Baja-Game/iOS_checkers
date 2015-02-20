@@ -8,10 +8,13 @@
 
 import Foundation
 
+///////////
+/////////// RAILS API
+///////////
+
 let API_URL = "https://baja-checkers.herokuapp.com/"
 
 class APIRequest {
-
     
     class func requestWithOptions(options: [String:AnyObject], andCompletion completion: (responseInfo: [String:AnyObject]) -> ()) {
         
@@ -67,6 +70,10 @@ class APIRequest {
     
 }
 
+    ///////////
+    ///////////  USER CLASS / SINGLETON
+    ///////////
+
 private let _currentUser = User()
 
 class User {
@@ -89,7 +96,12 @@ class User {
     
     class func currentUser() -> User { return _currentUser }
     
-    func getUserToken(username: String, andEmail email: String, andPassword password: String) {
+    
+    ///////////
+    /////////// SIGN UP USER
+    ///////////
+    
+    func getUserToken(username: String, andEmail email: String, andPassword password: String, andCompletion completion: () -> ()) {
         
         var options: [String:AnyObject] = [
         
@@ -113,17 +125,22 @@ class User {
             self.token = dataInfo["authentication_token"] as? String
             
         })
+        
+        completion()    // RUN THIS HERE OR IN THE REQUESTWITHOPTIONS METHOD ABOVE?
+        
     }
     
+    ///////////
+    /////////// LOG IN USER
+    ///////////
     
-    // LOGIN METHOD
-    func logInUser(email: String, andPassword password: String) {
+    func logInUser(email: String, andPassword password: String, andCompletion completion: () -> ()) {
         
         println(email, password)
         
         var options: [String:AnyObject] = [
             
-            "endpoint" : "users/log_in",
+            "endpoint" : "users/sign_in",
             "method" : "POST",
             "body" : [
                 
@@ -141,11 +158,16 @@ class User {
             let dataInfo = responseInfo["user"] as [String:AnyObject]
             
             self.token = dataInfo["authentication_token"] as? String
-            
+
         })
+        
+        completion()
+
     }
     
     
+    ///////////
+    /////////// JOIN NEW GAME
     ///////////
     
     // Join GAME METHOD
@@ -171,6 +193,10 @@ class User {
         
         
     }
+    
+    ///////////
+    /////////// REQUEST GAME LIST
+    ///////////
     
     func requestGameList() {
         

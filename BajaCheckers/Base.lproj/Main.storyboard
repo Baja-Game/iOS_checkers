@@ -232,13 +232,22 @@
                             <constraint firstAttribute="centerX" secondItem="zvT-Bx-CaS" secondAttribute="centerX" id="dgV-97-yfs"/>
                             <constraint firstAttribute="centerX" secondItem="K5u-OU-IBv" secondAttribute="centerX" id="hXU-SA-QP3"/>
                             <constraint firstAttribute="centerY" secondItem="K5u-OU-IBv" secondAttribute="centerY" id="m3K-1f-lJr"/>
+                            <constraint firstItem="zvT-Bx-CaS" firstAttribute="top" secondItem="K5u-OU-IBv" secondAttribute="bottom" constant="136" id="pUn-L7-4zF"/>
                             <constraint firstItem="6Kp-wX-vpN" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="rVJ-XJ-u9p"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="m3K-1f-lJr"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="checkmarkImage" destination="6Kp-wX-vpN" id="X6y-9y-S0J"/>
+                        <outlet property="containerBottomConstraint" destination="pUn-L7-4zF" id="Nws-PM-fHw"/>
                         <outlet property="displayLogInLink" destination="fTf-zC-U86" id="cUw-1m-2F8"/>
                         <outlet property="emailTextField" destination="jUn-Rp-ZsZ" id="Ihz-NT-IW8"/>
                         <outlet property="logInButton" destination="X26-RT-v1G" id="zr0-Lt-Oce"/>
+                        <outlet property="logoTextLabel" destination="p4b-Ho-3zs" id="b9R-lD-uKt"/>
                         <outlet property="passwordTextField" destination="kcg-Z6-6S5" id="n8d-A4-yY1"/>
                         <outlet property="signUpButton" destination="9wZ-hh-UE5" id="Nvz-bA-hgL"/>
                         <outlet property="usernameLabel" destination="DUN-If-48N" id="bd1-f2-Fzh"/>
@@ -270,7 +279,7 @@
                                         <constraint firstAttribute="width" constant="120" id="RAU-5b-5hp"/>
                                         <constraint firstAttribute="height" constant="64" id="whd-4L-8ma"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
                                     <state key="normal" title="New Game">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -494,7 +503,7 @@
         <!--Game Play VC-->
         <scene sceneID="Jhc-g7-D3p">
             <objects>
-                <viewController id="QJ7-eH-1yX" userLabel="Game Play VC" customClass="GameViewController" customModule="BajaCheckers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gameplayVC" id="QJ7-eH-1yX" userLabel="Game Play VC" customClass="GameViewController" customModule="BajaCheckers" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P7o-A8-kZB"/>
                         <viewControllerLayoutGuide type="bottom" id="KAe-d4-9I6"/>
