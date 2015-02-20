@@ -37,23 +37,45 @@ class APIRequest {
         
         request.HTTPMethod = options["method"] as String
 
-        ///// BODY
         
-        let bodyInfo = options["body"] as [String:AnyObject]
+        switch request.HTTPMethod {
+            
+        case "GET" :
+            
+            url = NSURL(string: API_URL + (options["endpoint"] as String) + "?auth_token=" + User.currentUser().token!)
+            
+            request.URL = url
+            
+        case "POST" :
+            
+            ///// BODY
+            
+            let bodyInfo = options["body"] as [String:AnyObject]
+            
+            let requestData = NSJSONSerialization.dataWithJSONObject(bodyInfo, options: .allZeros, error: nil)
+            
+            let jsonString = NSString(data: requestData!, encoding: NSUTF8StringEncoding)
+            
+            let postLength = "\(jsonString!.length)"
+            
+            request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+            
+            let postData = jsonString?.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
+            
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            request.HTTPBody = postData
+            
+        default :
+            
+            println(request.HTTPMethod)
+            
+        }
         
-        let requestData = NSJSONSerialization.dataWithJSONObject(bodyInfo, options: .allZeros, error: nil)
         
-        let jsonString = NSString(data: requestData!, encoding: NSUTF8StringEncoding)
         
-        let postLength = "\(jsonString!.length)"
         
-        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
         
-        let postData = jsonString?.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
-        
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        request.HTTPBody = postData
         
         ///// END BODY - now that it is setup, send the request
         
@@ -133,9 +155,9 @@ class User {
             
             println(responseInfo)
             
-            let dataInfo = responseInfo["user"] as [String:AnyObject]
+//            let dataInfo = responseInfo["user"] as [String:AnyObject]
             
-            self.token = dataInfo["authentication_token"] as? String
+            self.token = responseInfo["auth_token"] as? String
             
         })
         
@@ -168,13 +190,13 @@ class User {
             
             println(responseInfo)
             
-            let dataInfo = responseInfo["user"] as [String:AnyObject]
+//            let dataInfo = responseInfo["user"] as [String:AnyObject]
             
-            self.token = dataInfo["authentication_token"] as? String
+            self.token = responseInfo["auth_token"] as? String
+            
+            completion()
 
         })
-        
-        completion()
 
     }
     

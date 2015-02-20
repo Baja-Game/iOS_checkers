@@ -8,9 +8,14 @@
 
 import UIKit
 
+typealias Square = (Int,Int)
+
 @IBDesignable class BoardView: UIView, GamePieceDelegate {
     
     let gridSize = 8
+    
+    var selectedPiece: GamePiece?
+    var availableMoves: [Square] = []
     
     override func layoutSubviews() {
         
@@ -58,17 +63,29 @@ import UIKit
     
     func pieceSelected(piece: GamePiece) {
         
+        selectedPiece = piece
+        availableMoves = []
+
+        
         // piece.square is starting point (so +/- 1 to check other positions in array for nil)
         let (c,r) = piece.square
         
-        // TO DO
-        if piece.player?.direction == 1 {
-            let squareTopRight = DataModel.mainData().currentGame?.boardPieces[c + 1][r - 1]
-            let squareTopLeft = DataModel.mainData().currentGame?.boardPieces[c - 1][r - 1]
-        } else {
-            let squareBottomRight = DataModel.mainData().currentGame?.boardPieces[c + 1][r + 1]
-            let squareBottomLeft = DataModel.mainData().currentGame?.boardPieces[c - 1][r + 1]
-        }
+        let pieceRight = DataModel.mainData().currentGame?.boardPieces[c + 1][r + piece.player!.direction]
+        let pieceLeft = DataModel.mainData().currentGame?.boardPieces[c - 1][r + piece.player!.direction]
+        
+        if pieceRight == nil { availableMoves.append((c + 1,r + piece.player!.direction)) }
+        if pieceLeft == nil { availableMoves.append((c - 1,r + piece.player!.direction)) }
+        
+        setNeedsDisplay() // call drawRect
+        
+//        // TO DO
+//        if piece.player?.direction == 1 {
+//            let squareTopRight = DataModel.mainData().currentGame?.boardPieces[c + 1][r + 1]
+//            let squareTopLeft = DataModel.mainData().currentGame?.boardPieces[c - 1][r + 1]
+//        } else {
+//            let squareBottomRight = DataModel.mainData().currentGame?.boardPieces[c + 1][r - 1]
+//            let squareBottomLeft = DataModel.mainData().currentGame?.boardPieces[c - 1][r - 1]
+//        }
 
         
         // do something with piece
@@ -125,7 +142,12 @@ import UIKit
                 
                 let color = (c + r) % 2 == 0 ? UIColor.lightGrayColor() : UIColor.darkGrayColor()
                 
+                // check for (c,r) == item in available moves... if so change color
+                
+                
                 color.set()
+                
+                
                 
                 CGContextFillRect(ctx, CGRectMake(x, y, squareSize, squareSize))
                 

@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
             
             if let kbSize = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
                 
-                self.containerCenterConstraint.constant = kbSize.height / 2 
+                self.containerCenterConstraint.constant = kbSize.height / 2.2
 //                self.containerBottomConstraint.constant = 0
                 
                 self.checkmarkImage.alpha = 0.05     // fade out the logo image when keyboard rises

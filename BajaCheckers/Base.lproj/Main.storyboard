@@ -286,7 +286,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
-                            <tableViewSection headerTitle="Section-1" id="XpP-j3-wIy">
+                            <tableViewSection headerTitle="iOS Team" id="XpP-j3-wIy">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="125" id="Vsy-nl-nMq">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -308,7 +308,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Section-2" id="WUH-KJ-150">
+                            <tableViewSection headerTitle="Ruby on Rails Team" id="WUH-KJ-150">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="125" id="pcr-gP-73B">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -330,7 +330,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Section-3" id="Oxf-vI-3Lm">
+                            <tableViewSection headerTitle="Javascript / Front End Team" id="Oxf-vI-3Lm">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="125" id="qCb-b7-PX7">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -361,7 +361,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qA-8U-UmR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="397" y="1163"/>
+            <point key="canvasLocation" x="397" y="1165"/>
         </scene>
         <!--Select Game TVC-->
         <scene sceneID="Cqk-y7-lRZ">

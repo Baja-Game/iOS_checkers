@@ -41,12 +41,14 @@ class SelectGameTableViewController: UITableViewController {
     
     func updateGameList() {
         
+        println(User.currentUser().token)
+        
         if let token = User.currentUser().token {
             
             // load game list
             User.currentUser().requestGameList({ () -> () in
                 
-                self.gameList = DataModel.mainData().allGames
+//                self.gameList = DataModel.mainData().allGames
                 println("gamelist is: \(self.gameList)")
                 
             })
