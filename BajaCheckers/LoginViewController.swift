@@ -20,8 +20,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var checkmarkImage: UIImageView!
     @IBOutlet weak var logoTextLabel: UILabel!
-    @IBOutlet weak var containerBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var containerCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var logInLinkConstraint: NSLayoutConstraint!
+    
+    var savedConstraintConstant: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +32,13 @@ class LoginViewController: UIViewController {
         
         ////// move fields with keyboard
         
+        savedConstraintConstant = self.containerCenterConstraint.constant
+        
         NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillShowNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (notification: NSNotification!) -> Void in
             
             if let kbSize = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
                 
-                self.containerBottomConstraint.constant = -20 + kbSize.height
+                self.containerCenterConstraint.constant = kbSize.height / 2 
 //                self.containerBottomConstraint.constant = 0
                 
                 self.checkmarkImage.alpha = 0.05     // fade out the logo image when keyboard rises
@@ -48,7 +52,7 @@ class LoginViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillHideNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (notification) -> Void in
             
-            self.containerBottomConstraint.constant = 20
+            self.containerCenterConstraint.constant = self.savedConstraintConstant
             
             self.checkmarkImage.alpha = 1.0
             self.logoTextLabel.alpha = 1.0

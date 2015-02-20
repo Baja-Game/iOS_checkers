@@ -20,10 +20,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5u-OU-IBv" userLabel="LoginContainer">
-                                <rect key="frame" x="158" y="194" width="285" height="212"/>
+                                <rect key="frame" x="158" y="234" width="285" height="212"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCe-pY-iGz" userLabel="Email Label">
-                                        <rect key="frame" x="40" y="4" width="38" height="21"/>
+                                        <rect key="frame" x="39.5" y="4" width="37.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W15-Nn-oyJ" userLabel="Password Label">
-                                        <rect key="frame" x="7" y="42" width="70" height="21"/>
+                                        <rect key="frame" x="7.5" y="42.5" width="69.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -86,7 +86,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUN-If-48N" userLabel="Username Label">
-                                        <rect key="frame" x="4" y="82" width="73" height="21"/>
+                                        <rect key="frame" x="4" y="82" width="73" height="20.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -209,7 +209,7 @@
                                 </variation>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Employer?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvT-Bx-CaS" userLabel="Employer? Label">
-                                <rect key="frame" x="263" y="542" width="75" height="21"/>
+                                <rect key="frame" x="263.5" y="542.5" width="74.5" height="20.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -232,7 +232,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4b-Ho-3zs" userLabel="Title Label">
-                                <rect key="frame" x="296" y="69" width="70" height="62"/>
+                                <rect key="frame" x="296" y="69" width="69.5" height="62"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="57"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -244,12 +244,12 @@
                             <constraint firstAttribute="centerX" secondItem="6Kp-wX-vpN" secondAttribute="centerX" constant="22" id="4P0-lU-ucN"/>
                             <constraint firstItem="p4b-Ho-3zs" firstAttribute="leading" secondItem="6Kp-wX-vpN" secondAttribute="trailing" constant="-27" id="B8p-Dl-12r"/>
                             <constraint firstAttribute="centerX" secondItem="dAz-eJ-EYh" secondAttribute="centerX" id="Kaj-Bh-aSE"/>
+                            <constraint firstAttribute="centerY" secondItem="K5u-OU-IBv" secondAttribute="centerY" constant="-40" id="QGf-uq-qgG"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="dAz-eJ-EYh" secondAttribute="bottom" constant="8" id="UZS-vm-AMW"/>
                             <constraint firstItem="p4b-Ho-3zs" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="49" id="VCW-oV-KGx"/>
                             <constraint firstAttribute="centerX" secondItem="zvT-Bx-CaS" secondAttribute="centerX" id="dgV-97-yfs"/>
                             <constraint firstAttribute="centerX" secondItem="K5u-OU-IBv" secondAttribute="centerX" id="hXU-SA-QP3"/>
                             <constraint firstAttribute="centerY" secondItem="K5u-OU-IBv" secondAttribute="centerY" id="m3K-1f-lJr"/>
-                            <constraint firstItem="zvT-Bx-CaS" firstAttribute="top" secondItem="K5u-OU-IBv" secondAttribute="bottom" constant="136" id="pUn-L7-4zF"/>
                             <constraint firstItem="6Kp-wX-vpN" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="rVJ-XJ-u9p"/>
                         </constraints>
                         <variation key="default">
@@ -260,7 +260,7 @@
                     </view>
                     <connections>
                         <outlet property="checkmarkImage" destination="6Kp-wX-vpN" id="X6y-9y-S0J"/>
-                        <outlet property="containerBottomConstraint" destination="pUn-L7-4zF" id="Nws-PM-fHw"/>
+                        <outlet property="containerCenterConstraint" destination="QGf-uq-qgG" id="Ab7-y0-20P"/>
                         <outlet property="displayLogInLink" destination="fTf-zC-U86" id="cUw-1m-2F8"/>
                         <outlet property="emailTextField" destination="jUn-Rp-ZsZ" id="Ihz-NT-IW8"/>
                         <outlet property="logInButton" destination="X26-RT-v1G" id="zr0-Lt-Oce"/>
