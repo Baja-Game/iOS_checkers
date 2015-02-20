@@ -25,21 +25,23 @@ class GameModel: NSObject {
     /// 0 = empty, 1 = player1, 2 = player2
     var boardSquares = [
         
-        [0,1,0,1,0,1,0,1],
-        [1,0,1,0,1,0,1,0],
-        [0,1,0,1,0,1,0,1],
         [0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0],
-        [2,0,2,0,2,0,2,0],
-        [0,2,0,2,0,2,0,2],
-        [2,0,2,0,2,0,2,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0]
         
     ]
+    
+    var gameID: Int?
     
     // to let us know where the pieces are and where they can move
     var boardPieces: [[GamePiece?]] = Array(count: 8, repeatedValue: Array(count: 8, repeatedValue: nil))
     
-    // boardSquares[row][col]    -> this is what we'll get from backend, but in json
+    // boardSquares[row][col]    -> this is what we'll get from backend
     
     
     

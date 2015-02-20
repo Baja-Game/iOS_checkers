@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var checkmarkImage: UIImageView!
     @IBOutlet weak var logoTextLabel: UILabel!
     @IBOutlet weak var containerBottomConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var logInLinkConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,6 +106,8 @@ class LoginViewController: UIViewController {
             // Show log in fields and button
             logInHidden = false
             
+            self.logInLinkConstraint.constant = 73
+            
             usernameTextField.hidden = true
             usernameLine.hidden = true
             usernameLabel.hidden = true
@@ -117,6 +119,8 @@ class LoginViewController: UIViewController {
         } else {
             // Show Sign up fields and button
             logInHidden = true
+            
+            self.logInLinkConstraint.constant = 112
             
             usernameTextField.hidden = false
             usernameLine.hidden = false
@@ -133,10 +137,6 @@ class LoginViewController: UIViewController {
     @IBAction func logInUser(sender: AnyObject) {
         // log in user
 
-        
-//        User.currentUser().logInUser(emailTextField.text, andPassword: passwordTextField.text)
-        
-        
         
         var fieldValues: [String] = [emailTextField.text, passwordTextField.text]
         
@@ -156,7 +156,6 @@ class LoginViewController: UIViewController {
             
             // all fields are filled in, sign up user (DO WE NEED TO CHECK FOR EXISTING USER?)
             println("Login btn pressed, attempting to login user...")
-//            User.currentUser().logInUser(fieldValues[0], andPassword: fieldValues[1])
             
             User.currentUser().logInUser(fieldValues[0], andPassword: fieldValues[1], andCompletion: { () -> () in
                 
@@ -174,16 +173,5 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

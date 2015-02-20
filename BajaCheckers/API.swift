@@ -14,9 +14,22 @@ import Foundation
 
 let API_URL = "https://baja-checkers.herokuapp.com/"
 
+typealias ResponseBlock = (responseInfo: [String:AnyObject]) -> ()
+
 class APIRequest {
     
-    class func requestWithOptions(options: [String:AnyObject], andCompletion completion: (responseInfo: [String:AnyObject]) -> ()) {
+    /////// NEW JO STUFF
+    
+    class func requestWithEndPoint(endpoint: String, method: String, completion: ResponseBlock) {
+     
+        
+        
+        
+    }
+    
+    /////// END NEW JO STUFF
+    
+    class func requestWithOptions(options: [String:AnyObject], andCompletion completion: ResponseBlock) {
         
         var url = NSURL(string: API_URL + (options["endpoint"] as String))
         
@@ -167,11 +180,11 @@ class User {
     
     
     ///////////
-    /////////// JOIN NEW GAME
+    /////////// REQUEST NEW GAME
     ///////////
     
     // Join GAME METHOD
-    func requestNewGame() {
+    func requestNewGame(completion: () -> ()) {
         
         var options: [String:AnyObject] = [
             
@@ -189,6 +202,25 @@ class User {
             println(responseInfo)
             //create new game model and set data to response
             
+            let newGame = GameModel()
+//            newGame.boardSquares = responseInfo[]
+            
+            if let game = responseInfo["game"] as? [String:AnyObject] {
+                
+                if let board = game["board"] as? [[Int]] {
+            
+                    newGame.boardSquares = board
+                    
+                    DataModel.mainData().currentGame = newGame
+                    
+                    DataModel.mainData().allGames.append(newGame)   // necessary?
+                    
+                    completion()
+                    
+                }
+                
+            }
+            
         })
         
         
@@ -198,7 +230,9 @@ class User {
     /////////// REQUEST GAME LIST
     ///////////
     
-    func requestGameList() {
+    func requestGameList(completion: () -> ()) {
+        
+        println("request game list running...")
         
         var options: [String:AnyObject] = [
             
@@ -213,9 +247,14 @@ class User {
         APIRequest.requestWithOptions(options, andCompletion: { (responseInfo) -> () in
             // do something after request is done
             
-            println(responseInfo)
+            println(" request game list in api runs: \(responseInfo)")
             
             
+            if let games = responseInfo["game"] as? [String:AnyObject] {
+
+                println(games)
+                
+            }
             
         })
         

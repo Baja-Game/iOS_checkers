@@ -60,7 +60,16 @@ import UIKit
         
         // piece.square is starting point (so +/- 1 to check other positions in array for nil)
         let (c,r) = piece.square
-        let squareTopRight = DataModel.mainData().currentGame?.boardPieces[c + 1][r - 1]
+        
+        // TO DO
+        if piece.player?.direction == 1 {
+            let squareTopRight = DataModel.mainData().currentGame?.boardPieces[c + 1][r - 1]
+            let squareTopLeft = DataModel.mainData().currentGame?.boardPieces[c - 1][r - 1]
+        } else {
+            let squareBottomRight = DataModel.mainData().currentGame?.boardPieces[c + 1][r + 1]
+            let squareBottomLeft = DataModel.mainData().currentGame?.boardPieces[c - 1][r + 1]
+        }
+
         
         // do something with piece
         
@@ -82,7 +91,12 @@ import UIKit
             let col = Int(floor(location.x / squareSize))
             let row = Int(floor(location.y / squareSize))
             
-            let selectedSquare = DataModel.mainData().currentGame?.boardPieces[row][col]
+            if let selectedSquare = DataModel.mainData().currentGame?.boardPieces[row][col] {
+
+                // check for possible moves
+                pieceSelected(selectedSquare)
+                
+            }
 
         }
         

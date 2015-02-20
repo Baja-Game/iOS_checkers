@@ -16,8 +16,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // THIS IS CREATING NEW TEST GAME, DELETE THIS LATER I THINK
-        DataModel.mainData().currentGame = GameModel()
+
     }
 
     override func didReceiveMemoryWarning() {

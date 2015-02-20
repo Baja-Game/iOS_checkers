@@ -12,6 +12,53 @@ class SelectGameTableViewController: UITableViewController {
     
     let menuItems = GameMenuItems()
     
+    var gameList: [GameModel]?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // check for existing token - move to VIEWDIDLOAD or ViewdidAppear?
+        if let token = User.currentUser().token {
+            println("User exists and is logged in with auth token: \(token)")
+            
+        } else {
+            
+            // go to LogInViewController
+            if let loginVC = storyboard?.instantiateViewControllerWithIdentifier("loginVC") as? LoginViewController {
+                navigationController?.presentViewController(loginVC, animated: false, completion: nil)
+            }
+            
+        }
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        updateGameList()
+    }
+    
+    ////////
+    //////// UPDATE GAME LIST FROM SINGLETON
+    ////////
+    
+    func updateGameList() {
+        
+        if let token = User.currentUser().token {
+            
+            // load game list
+            User.currentUser().requestGameList({ () -> () in
+                
+                self.gameList = DataModel.mainData().allGames
+                println("gamelist is: \(self.gameList)")
+                
+            })
+            
+        }
+        
+    }
+    
+    ////////
+    //////// SET UP MENU ITEMS / SECTIONS.  DO WE NEED THIS?
+    ////////
+    
     class MenuItems: NSObject {
         var sections:[String] = []
         var items:[[String]] = []
@@ -26,44 +73,37 @@ class SelectGameTableViewController: UITableViewController {
         override init() {
             super.init()
                 
-            addSection("Your Move", item:   ["Jim","Bob","Max","Andy","Greg"])
-            addSection("Their Move", item: ["Jim","Bob"]) 
-            addSection("Past Games", item: ["Jim","Bob","Max","Andy","Greg"])
-            addSection("Leaderboard", item: ["Jim","Bob","Max","Andy","Greg"])
+            addSection("Your Move", item: [""])
+            addSection("Their Move", item: [""])
+            addSection("Past Games", item: [""])
+            addSection("Leaderboard", item: [""])
+
         }
         
     }
     
+    ////////
+    //////// CREATE NEW GAME AND PUSH TO GAMEVIEWCONTROLLER
+    ////////
     
     @IBAction func createNewGame(sender: AnyObject) {
         
-        User.currentUser().requestNewGame()
-        
-        if let gameplayVC = storyboard?.instantiateViewControllerWithIdentifier("gameplayVC") as? GameViewController {
-            navigationController?.presentViewController(gameplayVC, animated: false, completion: nil)
-        
-    }
-    
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-                
-        // check for existing token - move to VIEWDIDLOAD or ViewdidAppear?
-        if let token = User.currentUser().token {
-            println("User exists and is logged in with auth token: \(token)")
-            
-        } else {
-            
-            // go to SelectGameViewController
-            if let loginVC = storyboard?.instantiateViewControllerWithIdentifier("loginVC") as? LoginViewController {
-                navigationController?.presentViewController(loginVC, animated: false, completion: nil)
+        User.currentUser().requestNewGame { () -> () in
+         
+            self.tableView.reloadData() // needed?
+            if let gameplayVC = self.storyboard?.instantiateViewControllerWithIdentifier("gameplayVC") as? GameViewController {
+                self.navigationController?.presentViewController(gameplayVC, animated: false, completion: nil)
             }
             
         }
-
+        
     }
+    
+
+    
+    ////////
+    //////// NUMBER OF CELLS AND SECTIONS
+    ////////
 
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -78,24 +118,28 @@ class SelectGameTableViewController: UITableViewController {
         
     }
     
-    // SET UP CELLS
+
+    ////////
+    //////// SET UP CELLS
+    ////////
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as GameTableViewCell
     
-//        opponentLabel.text = menuItems.items[indexPath.section][indexPath.row]
-    
+
+//        println(gameList)
+//        cell.player2 =
+        
+
         return cell
     
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        return menuItems.sections[section]
+    ////////
+    //////// LISTEN FOR CELLS BEING SELECTED
+    ////////
     
-    }
-    
-    // LISTEN FOR CELL BEING SELECTED
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let row = indexPath.row
@@ -108,17 +152,26 @@ class SelectGameTableViewController: UITableViewController {
 //        let gameVC = storyboard?.instantiateViewControllerWithIdentifier("gameVC")
 //        presentViewController(gameVC, animated: true, completion: nil)
         
-        
+
+    }
     
+    ////////
+    //////// SET UP HEADERS FOR SECTIONS
+    ////////
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return menuItems.sections[section]
+        
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         
         let headerView = view as UITableViewHeaderFooterView
         headerView.textLabel.textColor = UIColor.whiteColor()
-        let font = UIFont(name: "HelveticaNeue-Thin", size: 22.0)
+        let font = UIFont(name: "HelveticaNeue-Regular", size: 16.0)
         headerView.textLabel.font = font?
-        headerView.contentView.backgroundColor = UIColor(red:0.15, green:0.49, blue:0.1, alpha:1)
+        headerView.contentView.backgroundColor = UIColor(red:0.15, green:0.49, blue:0.6, alpha:0.4)
 
     
     }

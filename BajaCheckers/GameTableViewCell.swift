@@ -14,6 +14,9 @@ class GameTableViewCell: UITableViewCell {
     @IBOutlet weak var opponentLetterLabel: UILabel!
     @IBOutlet weak var lastMovedLabel: UILabel!
     
+    var player2: String?
+    var lastUpdated: String?
+    var turnCount: Int?
 
     override func awakeFromNib() {
         super.awakeFromNib()
