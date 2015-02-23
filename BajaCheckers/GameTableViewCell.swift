@@ -14,9 +14,40 @@ class GameTableViewCell: UITableViewCell {
     @IBOutlet weak var opponentLetterLabel: UILabel!
     @IBOutlet weak var lastMovedLabel: UILabel!
     
-    var player2: String?
-    var lastUpdated: String?
-    var turnCount: Int?
+
+    var game: GameModel? {
+        didSet{
+            
+            let currentUser = User.currentUser().username
+            
+            if currentUser == game?.players[0].playerUsername {
+                opponentNameLabel.text = game?.players[0].playerUsername
+            } else {
+                opponentNameLabel.text = game?.players[1].playerUsername
+            }
+        
+//            lastMovedLabel
+            
+            
+            
+            if let date = game?.lastUpdate {
+                
+                var dateFormatter = NSDateFormatter()
+                // "yyyy-MM-dd-HH-mm-ss"
+//                dateFormatter.dateFormat = "yyyy-MM-ddTdd:HH:mm:ss"
+                var theDateFormat = NSDateFormatterStyle.ShortStyle
+                dateFormatter.dateStyle = theDateFormat
+
+                
+                if let date2 = dateFormatter.dateFromString(date) {
+                    lastMovedLabel.text = dateFormatter.stringFromDate(date2)
+                    println(date2)
+                }
+
+            }
+            
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

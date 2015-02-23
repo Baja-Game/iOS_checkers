@@ -163,6 +163,7 @@ class LoginViewController: UIViewController {
             
             User.currentUser().logInUser(fieldValues[0], andPassword: fieldValues[1], andCompletion: { () -> () in
                 
+                
                 // dismiss view controller when finished
                 self.dismissViewControllerAnimated(true, completion: nil)
                 

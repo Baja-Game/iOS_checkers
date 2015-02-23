@@ -37,6 +37,9 @@ class GameModel: NSObject {
     ]
     
     var gameID: Int?
+    var lastUpdate: String?
+    var turnCount: Int?
+    var isFinished: Bool?
     
     // to let us know where the pieces are and where they can move
     var boardPieces: [[GamePiece?]] = Array(count: 8, repeatedValue: Array(count: 8, repeatedValue: nil))
@@ -48,7 +51,8 @@ class GameModel: NSObject {
     // board positions
     
     // players
-    var players: [Player] = [Player(direction: 1), Player(direction: -1)]
+    var players: [Player] = []
+//    var players: [Player]?
     
     // winner
     var winner: Player?
@@ -65,6 +69,10 @@ class GameModel: NSObject {
 // var oppositeRow = player.direction == 1 ? 7 : 0      // this is for kinging
 
 class Player: NSObject {
+    
+    var playerID: Int?
+    var playerUsername: String?
+    
     
     // use direction when testing moves available
     var direction: Int!

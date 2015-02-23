@@ -29,7 +29,8 @@ class APIRequest {
     
     /////// END NEW JO STUFF
     
-    class func requestWithOptions(options: [String:AnyObject], andCompletion completion: ResponseBlock) {
+    class func requestWithOptions(options: [String:AnyObject], andCompletion completion: ResponseBlock)
+    {
         
         var url = NSURL(string: API_URL + (options["endpoint"] as String))
         
@@ -113,6 +114,9 @@ private let _currentUser = User()
 
 class User {
     
+    // add username
+    var username: String?
+    
     var token: String? {
         didSet {
             // save the token when it's set
@@ -159,6 +163,9 @@ class User {
             
             self.token = responseInfo["auth_token"] as? String
             
+            // set username
+            self.username = responseInfo["username"] as? String
+            
         })
         
         completion()    // RUN THIS HERE OR IN THE REQUESTWITHOPTIONS METHOD ABOVE?
@@ -193,6 +200,9 @@ class User {
 //            let dataInfo = responseInfo["user"] as [String:AnyObject]
             
             self.token = responseInfo["auth_token"] as? String
+            
+            // set username
+            self.username = responseInfo["username"] as? String
             
             completion()
 
@@ -269,12 +279,69 @@ class User {
         APIRequest.requestWithOptions(options, andCompletion: { (responseInfo) -> () in
             // do something after request is done
             
-            println(" request game list in api runs: \(responseInfo)")
+//            println(" request game list in api running: \(responseInfo)")
             
+            let games = responseInfo["game"] as [[String:AnyObject]]
             
-            if let games = responseInfo["game"] as? [String:AnyObject] {
+            for eachGame in games {
+                println(eachGame)
+                
+                let game = GameModel()
+                
+                ///////// GAME
+                let gm = eachGame["game"] as [String:AnyObject]
+//                println(gm)
+                let board = gm["board"] as [[Int]]
+//                println(board)
+                let id = gm["id"] as Int
+//                println(id)
+                let lastUpdate: String? = gm["updated_at"] as? String
+//                println(lastUpdate)
+                let turnCount: Int? = gm["turn_counter"] as? Int
+//                println(turnCount)
+                let isFinished: Bool? = gm["finished"] as? Bool
+//                println(isFinished)
+                
+                game.boardSquares = board
+                game.gameID = id
+                game.lastUpdate = lastUpdate
+                game.turnCount = turnCount
+                game.isFinished = isFinished
+                
+                game.players = []
+                
+                // ADD PLAYERS TO GAME
+                // PLAYER 2 - is this right? doubt it.
+                if let p2 = eachGame["player2"] as? [String:AnyObject] {
+                    //                    println(p2)
 
-                println(games)
+                    let playerID = p2["id"] as Int
+                    let playerUsername = p2["username"] as String
+                    let direction = -1
+                    let player = Player(direction: direction)
+                    player.playerID = playerID
+                    player.playerUsername = playerUsername
+                    game.players.append(player)
+
+                }
+                // PLAYER 1
+                if let p1 = eachGame["player1"] as? [String:AnyObject] {
+                    //                    println(p2)
+                    
+                    let playerID = p1["id"] as Int
+                    let playerUsername = p1["username"] as String
+                    let direction = 1
+                    let player = Player(direction: direction)
+                    player.playerID = playerID
+                    player.playerUsername = playerUsername
+                    game.players.append(player)
+
+                }
+
+                // ADD GAME TO SINGLETON ARRAY
+                DataModel.mainData().allGames.append(game)
+                
+                completion()
                 
             }
             

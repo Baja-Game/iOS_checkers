@@ -214,6 +214,7 @@
 				TargetAttributes = {
 					D85F48E61A93EA29000E7FA9 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = ZKD389657L;
 					};
 					D85F48FB1A93EA29000E7FA9 = {
 						CreatedOnToolsVersion = 6.1.1;

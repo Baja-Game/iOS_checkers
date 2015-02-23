@@ -10,6 +10,14 @@ import UIKit
 
 class DevelopersTableViewController: UITableViewController {
 
+    @IBAction func backToLogin(sender: AnyObject) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

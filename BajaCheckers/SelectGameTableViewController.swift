@@ -48,8 +48,9 @@ class SelectGameTableViewController: UITableViewController {
             // load game list
             User.currentUser().requestGameList({ () -> () in
                 
-//                self.gameList = DataModel.mainData().allGames
-                println("gamelist is: \(self.gameList)")
+                self.gameList = DataModel.mainData().allGames
+//                println("gamelist is: \(self.gameList)")
+                self.tableView.reloadData()
                 
             })
             
@@ -128,15 +129,16 @@ class SelectGameTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as GameTableViewCell
-    
-
-//        println(gameList)
-//        cell.player2 =
         
-
+        if let games = gameList {
+            cell.game = games[indexPath.row] as GameModel
+//            println(games)
+        }
+        
         return cell
     
     }
+    
     
     ////////
     //////// LISTEN FOR CELLS BEING SELECTED
