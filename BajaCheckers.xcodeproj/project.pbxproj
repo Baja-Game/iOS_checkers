@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D851FEC41A96776100D05626 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D851FEC31A96776100D05626 /* GameViewController.swift */; };
 		D852A5FE1A94152C00EA64EC /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D852A5FD1A94152C00EA64EC /* CustomButton.swift */; };
 		D85F48ED1A93EA29000E7FA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85F48EC1A93EA29000E7FA9 /* AppDelegate.swift */; };
 		D85F48F21A93EA29000E7FA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D85F48F01A93EA29000E7FA9 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 		D878CBCA1A95093D00F655B2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D878CBC91A95093D00F655B2 /* LoginViewController.swift */; };
 		D878CBCC1A95190B00F655B2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D878CBCB1A95190B00F655B2 /* API.swift */; };
 		D878CBD01A96326B00F655B2 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D878CBCF1A96326B00F655B2 /* GameModel.swift */; };
+		D8E8F87F1A97B2EC003EBB5F /* DevelopersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E8F87E1A97B2EC003EBB5F /* DevelopersTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D851FEC31A96776100D05626 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D852A5FD1A94152C00EA64EC /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D85F48E71A93EA29000E7FA9 /* BajaCheckers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BajaCheckers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85F48EB1A93EA29000E7FA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		D878CBCB1A95190B00F655B2 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		D878CBCF1A96326B00F655B2 /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		D878CBD11A96399100F655B2 /* Logic.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Logic.playground; sourceTree = "<group>"; };
+		D8E8F87E1A97B2EC003EBB5F /* DevelopersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopersTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 			children = (
 				D878CBC91A95093D00F655B2 /* LoginViewController.swift */,
 				D878CBBF1A9503E200F655B2 /* SelectGameTableViewController.swift */,
+				D851FEC31A96776100D05626 /* GameViewController.swift */,
+				D8E8F87E1A97B2EC003EBB5F /* DevelopersTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -208,6 +214,7 @@
 				TargetAttributes = {
 					D85F48E61A93EA29000E7FA9 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = ZKD389657L;
 					};
 					D85F48FB1A93EA29000E7FA9 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -259,8 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D851FEC41A96776100D05626 /* GameViewController.swift in Sources */,
 				D878CBCA1A95093D00F655B2 /* LoginViewController.swift in Sources */,
 				D878CBC21A95045700F655B2 /* GameTableViewCell.swift in Sources */,
+				D8E8F87F1A97B2EC003EBB5F /* DevelopersTableViewController.swift in Sources */,
 				D878CBD01A96326B00F655B2 /* GameModel.swift in Sources */,
 				D85F48ED1A93EA29000E7FA9 /* AppDelegate.swift in Sources */,
 				D878CBC41A95073C00F655B2 /* BoardView.swift in Sources */,

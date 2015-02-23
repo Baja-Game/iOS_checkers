@@ -4,16 +4,15 @@ import UIKit
 
 var str = "Hello, playground"
 
+// LOGIN SCREEN
+// DONE - log in / sign up needs to wait until completed before dismissing VC
+// ~DONE - doesn't work with 4S - keyboard needs to move up fields and buttons
+// optional - make log in btn and link move up once username field is hidden
+// DONE - does log in work?
 
-// type = 0,1,2,3,4
+// GAMEPLAY
+// when new game is requested from Rails, create new game and add to model / singleton.
+// same for list of games.
 
-// player1 = 1,3    // we want this to equal 0
-// player2 = 2,4    // we want this to equal 1
 
-// players = [player1,player2]
 
-for i in 0...4 {
-    
-    let num = (i + 1) % 2
-    
-}

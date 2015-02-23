@@ -4,13 +4,18 @@
 //
 //  Created by Michael McChesney on 2/18/15.
 //  Copyright (c) 2015 Max McChesney. All rights reserved.
-//
+// 
 
 import UIKit
+
+typealias Square = (Int,Int)
 
 @IBDesignable class BoardView: UIView, GamePieceDelegate {
     
     let gridSize = 8
+    
+    var selectedPiece: GamePiece?
+    var availableMoves: [Square] = []
     
     override func layoutSubviews() {
         
@@ -26,6 +31,7 @@ import UIKit
                     if let type = PieceType(rawValue: squarePieceType) {
                         
                         var piece = GamePiece(type: type)
+                        piece.delegate = self
                         
                         // tell each piece its current position
                         piece.square = (columnIndex, rowIndex)
@@ -57,9 +63,30 @@ import UIKit
     
     func pieceSelected(piece: GamePiece) {
         
+        selectedPiece = piece
+        availableMoves = []
+
+        
         // piece.square is starting point (so +/- 1 to check other positions in array for nil)
         let (c,r) = piece.square
-        let squareTopRight = DataModel.mainData().currentGame?.boardPieces[c + 1][r - 1]
+        
+        let pieceRight = DataModel.mainData().currentGame?.boardPieces[c + 1][r + piece.player!.direction]
+        let pieceLeft = DataModel.mainData().currentGame?.boardPieces[c - 1][r + piece.player!.direction]
+        
+        if pieceRight == nil { availableMoves.append((c + 1,r + piece.player!.direction)) }
+        if pieceLeft == nil { availableMoves.append((c - 1,r + piece.player!.direction)) }
+        
+        setNeedsDisplay() // call drawRect
+        
+//        // TO DO
+//        if piece.player?.direction == 1 {
+//            let squareTopRight = DataModel.mainData().currentGame?.boardPieces[c + 1][r + 1]
+//            let squareTopLeft = DataModel.mainData().currentGame?.boardPieces[c - 1][r + 1]
+//        } else {
+//            let squareBottomRight = DataModel.mainData().currentGame?.boardPieces[c + 1][r - 1]
+//            let squareBottomLeft = DataModel.mainData().currentGame?.boardPieces[c - 1][r - 1]
+//        }
+
         
         // do something with piece
         
@@ -81,7 +108,12 @@ import UIKit
             let col = Int(floor(location.x / squareSize))
             let row = Int(floor(location.y / squareSize))
             
-            let selectedSquare = DataModel.mainData().currentGame?.boardPieces[row][col]
+            if let selectedSquare = DataModel.mainData().currentGame?.boardPieces[row][col] {
+
+                // check for possible moves
+                pieceSelected(selectedSquare)
+                
+            }
 
         }
         
@@ -110,7 +142,12 @@ import UIKit
                 
                 let color = (c + r) % 2 == 0 ? UIColor.lightGrayColor() : UIColor.darkGrayColor()
                 
+                // check for (c,r) == item in available moves... if so change color
+                
+                
                 color.set()
+                
+                
                 
                 CGContextFillRect(ctx, CGRectMake(x, y, squareSize, squareSize))
                 

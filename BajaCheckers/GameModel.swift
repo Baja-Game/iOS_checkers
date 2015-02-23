@@ -25,28 +25,34 @@ class GameModel: NSObject {
     /// 0 = empty, 1 = player1, 2 = player2
     var boardSquares = [
         
-        [0,1,0,1,0,1,0,1],
-        [1,0,1,0,1,0,1,0],
-        [0,1,0,1,0,1,0,1],
         [0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0],
-        [2,0,2,0,2,0,2,0],
-        [0,2,0,2,0,2,0,2],
-        [2,0,2,0,2,0,2,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0]
         
     ]
+    
+    var gameID: Int?
+    var lastUpdate: String?
+    var turnCount: Int?
+    var isFinished: Bool?
     
     // to let us know where the pieces are and where they can move
     var boardPieces: [[GamePiece?]] = Array(count: 8, repeatedValue: Array(count: 8, repeatedValue: nil))
     
-    // boardSquares[row][col]    -> this is what we'll get from backend, but in json
+    // boardSquares[row][col]    -> this is what we'll get from backend
     
     
     
     // board positions
     
     // players
-    var players: [Player] = [Player(direction: 1), Player(direction: -1)]
+    var players: [Player] = []
+//    var players: [Player]?
     
     // winner
     var winner: Player?
@@ -63,6 +69,10 @@ class GameModel: NSObject {
 // var oppositeRow = player.direction == 1 ? 7 : 0      // this is for kinging
 
 class Player: NSObject {
+    
+    var playerID: Int?
+    var playerUsername: String?
+    
     
     // use direction when testing moves available
     var direction: Int!

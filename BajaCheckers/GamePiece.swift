@@ -39,7 +39,7 @@ class GamePiece: UIView {
     }
     
     /// (col, row)
-    var square: (Int, Int)!
+    var square: Square!
     
     var delegate: GamePieceDelegate?
     

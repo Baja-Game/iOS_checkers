@@ -8,12 +8,29 @@
 
 import Foundation
 
+///////////
+/////////// RAILS API
+///////////
+
 let API_URL = "https://baja-checkers.herokuapp.com/"
 
-class APIRequest {
+typealias ResponseBlock = (responseInfo: [String:AnyObject]) -> ()
 
+class APIRequest {
     
-    class func requestWithOptions(options: [String:AnyObject], andCompletion completion: (responseInfo: [String:AnyObject]) -> ()) {
+    /////// NEW JO STUFF
+    
+    class func requestWithEndPoint(endpoint: String, method: String, completion: ResponseBlock) {
+     
+        
+        
+        
+    }
+    
+    /////// END NEW JO STUFF
+    
+    class func requestWithOptions(options: [String:AnyObject], andCompletion completion: ResponseBlock)
+    {
         
         var url = NSURL(string: API_URL + (options["endpoint"] as String))
         
@@ -21,23 +38,45 @@ class APIRequest {
         
         request.HTTPMethod = options["method"] as String
 
-        ///// BODY
         
-        let bodyInfo = options["body"] as [String:AnyObject]
+        switch request.HTTPMethod {
+            
+        case "GET" :
+            
+            url = NSURL(string: API_URL + (options["endpoint"] as String) + "?auth_token=" + User.currentUser().token!)
+            
+            request.URL = url
+            
+        case "POST" :
+            
+            ///// BODY
+            
+            let bodyInfo = options["body"] as [String:AnyObject]
+            
+            let requestData = NSJSONSerialization.dataWithJSONObject(bodyInfo, options: .allZeros, error: nil)
+            
+            let jsonString = NSString(data: requestData!, encoding: NSUTF8StringEncoding)
+            
+            let postLength = "\(jsonString!.length)"
+            
+            request.setValue(postLength, forHTTPHeaderField: "Content-Length")
+            
+            let postData = jsonString?.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
+            
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            request.HTTPBody = postData
+            
+        default :
+            
+            println(request.HTTPMethod)
+            
+        }
         
-        let requestData = NSJSONSerialization.dataWithJSONObject(bodyInfo, options: .allZeros, error: nil)
         
-        let jsonString = NSString(data: requestData!, encoding: NSUTF8StringEncoding)
         
-        let postLength = "\(jsonString!.length)"
         
-        request.setValue(postLength, forHTTPHeaderField: "Content-Length")
         
-        let postData = jsonString?.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
-        
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        request.HTTPBody = postData
         
         ///// END BODY - now that it is setup, send the request
         
@@ -46,9 +85,16 @@ class APIRequest {
             if error == nil {
                 // do something with data
                 
-                let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as [String:AnyObject]
+                if let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? [String:AnyObject] {
+                    
+                    completion(responseInfo: json)
+                    
+                } else {
+                    
+                    println("no json")
+                    
+                }
 
-                completion(responseInfo: json)
                 
             } else {
                 println(error)
@@ -60,9 +106,16 @@ class APIRequest {
     
 }
 
+    ///////////
+    ///////////  USER CLASS / SINGLETON
+    ///////////
+
 private let _currentUser = User()
 
 class User {
+    
+    // add username
+    var username: String?
     
     var token: String? {
         didSet {
@@ -82,7 +135,12 @@ class User {
     
     class func currentUser() -> User { return _currentUser }
     
-    func getUserToken(username: String, andEmail email: String, andPassword password: String) {
+    
+    ///////////
+    /////////// SIGN UP USER
+    ///////////
+    
+    func getUserToken(username: String, andEmail email: String, andPassword password: String, andCompletion completion: () -> ()) {
         
         var options: [String:AnyObject] = [
         
@@ -101,20 +159,30 @@ class User {
             
             println(responseInfo)
             
-            let dataInfo = responseInfo["user"] as [String:String]
+//            let dataInfo = responseInfo["user"] as [String:AnyObject]
             
-            self.token = dataInfo["authentication_token"]
+            self.token = responseInfo["auth_token"] as? String
+            
+            // set username
+            self.username = responseInfo["username"] as? String
             
         })
+        
+        completion()    // RUN THIS HERE OR IN THE REQUESTWITHOPTIONS METHOD ABOVE?
+        
     }
     
+    ///////////
+    /////////// LOG IN USER
+    ///////////
     
-    // LOGIN METHOD
-    func logInUser(email: String, andPassword password: String) {
+    func logInUser(email: String, andPassword password: String, andCompletion completion: () -> ()) {
+        
+        println(email, password)
         
         var options: [String:AnyObject] = [
             
-            "endpoint" : "users/log_in",
+            "endpoint" : "users/sign_in",
             "method" : "POST",
             "body" : [
                 
@@ -129,12 +197,156 @@ class User {
             
             println(responseInfo)
             
-            let dataInfo = responseInfo["user"] as [String:String]
+//            let dataInfo = responseInfo["user"] as [String:AnyObject]
             
-            self.token = dataInfo["authentication_token"]
+            self.token = responseInfo["auth_token"] as? String
             
+            // set username
+            self.username = responseInfo["username"] as? String
+            
+            completion()
+
         })
+
     }
     
+    
+    ///////////
+    /////////// REQUEST NEW GAME
+    ///////////
+    
+    // Join GAME METHOD
+    func requestNewGame(completion: () -> ()) {
+        
+        var options: [String:AnyObject] = [
+            
+            "endpoint" : "games",
+            "method" : "PUT",
+            "body" : [
+                "auth_token" : token!
+            ]
+            
+        ]
+        
+        APIRequest.requestWithOptions(options, andCompletion: { (responseInfo) -> () in
+            // do something after request is done
+            
+            println(responseInfo)
+            //create new game model and set data to response
+            
+            let newGame = GameModel()
+//            newGame.boardSquares = responseInfo[]
+            
+            if let game = responseInfo["game"] as? [String:AnyObject] {
+                
+                if let board = game["board"] as? [[Int]] {
+            
+                    newGame.boardSquares = board
+                    
+                    DataModel.mainData().currentGame = newGame
+                    
+                    DataModel.mainData().allGames.append(newGame)   // necessary?
+                    
+                    completion()
+                    
+                }
+                
+            }
+            
+        })
+        
+        
+    }
+    
+    ///////////
+    /////////// REQUEST GAME LIST
+    ///////////
+    
+    func requestGameList(completion: () -> ()) {
+        
+        println("request game list running...")
+        
+        var options: [String:AnyObject] = [
+            
+            "endpoint" : "games",
+            "method" : "GET",
+            "body" : [
+                "auth_token" : token!
+            ]
+            
+        ]
+        
+        APIRequest.requestWithOptions(options, andCompletion: { (responseInfo) -> () in
+            // do something after request is done
+            
+//            println(" request game list in api running: \(responseInfo)")
+            
+            let games = responseInfo["game"] as [[String:AnyObject]]
+            
+            for eachGame in games {
+                println(eachGame)
+                
+                let game = GameModel()
+                
+                ///////// GAME
+                let gm = eachGame["game"] as [String:AnyObject]
+//                println(gm)
+                let board = gm["board"] as [[Int]]
+//                println(board)
+                let id = gm["id"] as Int
+//                println(id)
+                let lastUpdate: String? = gm["updated_at"] as? String
+//                println(lastUpdate)
+                let turnCount: Int? = gm["turn_counter"] as? Int
+//                println(turnCount)
+                let isFinished: Bool? = gm["finished"] as? Bool
+//                println(isFinished)
+                
+                game.boardSquares = board
+                game.gameID = id
+                game.lastUpdate = lastUpdate
+                game.turnCount = turnCount
+                game.isFinished = isFinished
+                
+                game.players = []
+                
+                // ADD PLAYERS TO GAME
+                // PLAYER 2 - is this right? doubt it.
+                if let p2 = eachGame["player2"] as? [String:AnyObject] {
+                    //                    println(p2)
+
+                    let playerID = p2["id"] as Int
+                    let playerUsername = p2["username"] as String
+                    let direction = -1
+                    let player = Player(direction: direction)
+                    player.playerID = playerID
+                    player.playerUsername = playerUsername
+                    game.players.append(player)
+
+                }
+                // PLAYER 1
+                if let p1 = eachGame["player1"] as? [String:AnyObject] {
+                    //                    println(p2)
+                    
+                    let playerID = p1["id"] as Int
+                    let playerUsername = p1["username"] as String
+                    let direction = 1
+                    let player = Player(direction: direction)
+                    player.playerID = playerID
+                    player.playerUsername = playerUsername
+                    game.players.append(player)
+
+                }
+
+                // ADD GAME TO SINGLETON ARRAY
+                DataModel.mainData().allGames.append(game)
+                
+                completion()
+                
+            }
+            
+        })
+        
+    }
     
 }
